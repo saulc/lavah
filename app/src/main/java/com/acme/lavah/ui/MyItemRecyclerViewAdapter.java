@@ -1,15 +1,22 @@
 package com.acme.lavah.ui;
 
+
+
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.acme.lavah.ui.placeholder.PlaceholderContent.PlaceholderItem;
 import com.acme.lavah.databinding.FragmentItemBinding;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -19,9 +26,11 @@ import java.util.List;
 public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
 
     private final List<PlaceholderItem> mValues;
+    private Context context;
 
-    public MyItemRecyclerViewAdapter(List<PlaceholderItem> items) {
+    public MyItemRecyclerViewAdapter(Context context, List<PlaceholderItem> items) {
         mValues = items;
+        this.context = context;
     }
 
     @Override
@@ -36,6 +45,16 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
         holder.mContentView.setText(mValues.get(position).content);
+
+
+        try {
+            InputStream ims = context.getResources().getAssets().open(mValues.get(position).details);
+            // load image as Drawable
+            Drawable d = Drawable.createFromStream(ims, null);
+            holder.mImageView.setImageDrawable( d);
+        } catch (IOException e) {
+//            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -46,12 +65,14 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mIdView;
         public final TextView mContentView;
+        public final ImageView mImageView;
         public PlaceholderItem mItem;
 
         public ViewHolder(FragmentItemBinding binding) {
             super(binding.getRoot());
             mIdView = binding.itemNumber;
             mContentView = binding.content;
+            mImageView = binding.imageView2;
         }
 
         @Override
