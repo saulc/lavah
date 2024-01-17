@@ -29,14 +29,14 @@
         android:background="@color/pink"
         app:srcCompat="@drawable/ic_launcher_foreground"
         tools:layout_editor_absoluteX="-8dp"
-        tools:layout_editor_absoluteY="80dp" />
+        tools:layout_editor_absoluteY="logo_margin" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
 
         android:layout_width="match_parent"
         android:layout_height="440dp"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="160dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

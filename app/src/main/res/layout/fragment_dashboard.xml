@@ -29,13 +29,13 @@
         android:background="@color/pink"
         app:srcCompat="@drawable/ic_launcher_foreground"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="48dp" />
+        tools:layout_editor_absoluteY="logo_margin" />
 
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
         android:layout_height="380dp"
-        android:layout_marginTop="172dp"
+        android:layout_marginTop="160dp"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_foreground"
         tools:layout_editor_absoluteX="0dp" />

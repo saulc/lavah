@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.Theme_Lavah);
         super.onCreate(savedInstanceState);
 
+        getSupportActionBar().hide();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
