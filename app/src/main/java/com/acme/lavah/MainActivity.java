@@ -1,9 +1,11 @@
 package com.acme.lavah;
 
+
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -21,7 +23,14 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.Theme_Lavah);
         super.onCreate(savedInstanceState);
 
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
+        ActionBar ab = getSupportActionBar();
+        if(ab != null){
+            ab.setTitle("Test");
+            ab.setDisplayShowTitleEnabled(true);
+            ab.hide();
+        }
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 

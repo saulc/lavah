@@ -1,6 +1,7 @@
 package com.acme.lavah.ui.home;
 
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +39,7 @@ public class HomeFragment extends Fragment {
         images.add("iss.jpg");
         images.add("vlabw.jpg");
         images.add("web.jpg");
+        images.add("li.jpg");
         images.add("cl.jpg");
         images.add("ff.jpg");
         images.add("ap.jpg");
@@ -55,8 +57,19 @@ public class HomeFragment extends Fragment {
                     InputStream ims = getResources().getAssets().open(images.get(i));
                     // load image as Drawable
                     Drawable d = Drawable.createFromStream(ims, null);
+
+                    d.setAlpha(100);
+                    imageV.getBackground().setAlpha(100);
+                    int transitionTime = 1500, tt = 333;
+                    Drawable[] layers = { imageV.getDrawable() , d };
+                    TransitionDrawable transition = new TransitionDrawable( layers );
+                    transition.setCrossFadeEnabled(true);
+                    transition.setAlpha(150);
+                    imageV.setImageDrawable(transition);
+                    transition.startTransition(transitionTime);
+
                     // set image to ImageView
-                    imageV.setImageDrawable(d);
+//                    imageV.setImageDrawable(d);
                     ims.close();
                 }
                 catch(IOException ex)
